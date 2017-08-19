@@ -1,0 +1,92 @@
+{
+  "name": "unveil",
+  "description": "A React-based Reactive Presentation Framework",
+  "keywords": [
+    "presentation",
+    "slides",
+    "unveil",
+    "reveal",
+    "present",
+    "react",
+    "reactive",
+    "rx"
+  ],
+  "files": [
+    "lib",
+    "dist"
+  ],
+  "author": "Leandro Ostera <leandro@ostera.io>",
+  "contributors": [
+    {
+      "name": "Iris Schaffer",
+      "email": "irisschaffer@gmx.net"
+    }
+  ],
+  "repository": "https://github.com/ostera/unveil.js",
+  "bugs": {
+    "url": "https://github.com/ostera/unveil.js/issues"
+  },
+  "homepage": "https://github.com/ostera/unveil.js",
+  "license": "MIT",
+  "version": "0.1.13",
+  "main": "lib/index.js",
+  "dependencies": {
+    "history": "~4.4.0",
+    "immutable": "~3.8.1",
+    "marked": "~0.3.5",
+    "normalize.css": "^5.0.0",
+    "react": "^15.3.2",
+    "react-addons-css-transition-group": "^15.3.2",
+    "react-dom": "^15.3.2",
+    "rx-history": "~1.0.4",
+    "rxjs": "~5.0.0-beta.1"
+  },
+  "devDependencies": {
+    "react-addons-test-utils": "~15.4.0",
+    "babel-plugin-transform-export-extensions": "^6.4.0",
+    "babel-plugin-transform-runtime": "~6.15.0",
+    "babel-preset-es2015": "~6.18.0",
+    "babel-preset-react": "~6.16.0",
+    "babelify": "~7.3.0",
+    "browserify": "~13.1.1",
+    "envify": "~3.4.1",
+    "jest-cli": "^17.0.2",
+    "babel-jest": "~17.0.2",
+    "babel-cli": "~6.18.0",
+    "reactify": "~1.1.1",
+    "uglify-js": "~2.7.4",
+    "cssmin": "^0.4.3",
+    "watchify": "~3.7.0"
+  },
+  "scripts": {
+    "preversion": "npm run clean && npm run build && npm run package",
+    "build": "./node_modules/babel-cli/bin/babel.js src -d lib --source-maps inline; sass --update ./styles:./lib/css",
+    "package": "mkdir -p dist && browserify . -t [envify --NODE_ENV production] src/index.js -o dist/unveil.js && uglifyjs dist/unveil.js -cm -o dist/unveil.min.js && sass --update ./styles:./dist --style compressed",
+    "test": "jest",
+    "clean": "rm -rf ./dist ./build ./lib"
+  },
+  "browserify": {
+    "transform": [
+      "babelify",
+      "reactify",
+      "envify"
+    ]
+  },
+  "jest": {
+    "testRunner": "<rootDir>/node_modules/jest-cli/src/testRunners/jasmine/jasmine2.js",
+    "scriptPreprocessor": "<rootDir>/node_modules/babel-jest",
+    "unmockedModulePathPatterns": [
+      "<rootDir>/node_modules",
+      "fixtures"
+    ],
+    "testPathIgnorePatterns": [
+      "fixtures"
+    ],
+    "modulePathIgnorePatterns": [
+      "node_modules",
+      "build",
+      "styles",
+      "<rootDir>/lib"
+    ]
+  }
+}

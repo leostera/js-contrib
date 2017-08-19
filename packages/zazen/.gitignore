@@ -1,0 +1,17 @@
+.cache
+coverage
+node_modules
+flow-typed
+lib
+dist
+
+.build.sh
+.travis_build
+.bin
+
+*.sw*
+tags*
+.ctagsignore
+.npmignore
+browserify-cache.json
+.nyc*

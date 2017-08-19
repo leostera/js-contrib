@@ -1,0 +1,12 @@
+[options]
+all=true
+
+[include]
+.*/node_modules/kalachakra/.*
+.*/src/.*
+
+[ignore]
+.*/coverage/.*
+.*/__tests__/.*
+.*/node_modules/.*
+.*/lib/.*

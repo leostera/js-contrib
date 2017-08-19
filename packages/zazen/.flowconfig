@@ -1,0 +1,14 @@
+[options]
+all=true
+suppress_comment= \\(.\\|\n\\)*\\$FlowIgnore
+
+[include]
+.*/node_modules/zazen/.*
+.*/src/.*
+
+[ignore]
+.*/.cache/.*
+.*/koans/.*
+.*/coverage/.*
+.*/node_modules/.*
+.*/lib/.*

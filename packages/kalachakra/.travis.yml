@@ -1,0 +1,25 @@
+language: node_js
+
+node_js:
+  - '6'
+
+env:
+  global:
+    - NODE_ENV=CI
+
+cache:
+  directories:
+    - node_modules
+
+before_install:
+  - sudo apt-get install bc -y
+
+script:
+  - make setup
+  - make check
+  - make lint
+  - make test
+  - NODE_ENV=production make package
+
+after_success:
+  - ./node_modules/.bin/codecov
